@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Table template</title>
+    <link href="minimal-table.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <h1>Table template</h1>
+    <p>
+        The <code>&lt;table&gt;</code> tags contain the entire table. Then the "cell" of the table is inside a "table data" tag of <code>&lt;td&gt;</code>
+    </p>
+    <p>
+        This table just has table-td for each item.
+    </p>
+    <table>
+        <td>I'm your first cell.</td>
+        <td>I'm your 2 cell.</td>
+        <td>I'm your 3 cell.</td>
+        <td>I'm your 4 cell.</td>
+    </table>
+    <p>
+        This next one contains the four td's inside a tr, for "table row"
+    </p>
+    <table>
+        <tr>
+            <td>I'm your first cell.</td>
+            <td>I'm your 2 cell.</td>
+            <td>I'm your 3 cell.</td>
+            <td>I'm your 4 cell.</td>
+        </tr>
+    </table>
+
+    <p>
+        The next one has a few rows, each created by tr's:
+    </p>
+    <table>
+        <tr>
+            <td>I'm your 1-1 cell.</td>
+            <td>I'm your 1-2.</td>
+            <td>I'm your 1-3.</td>
+            <td>I'm your 1-4.</td>
+        </tr>
+        <tr>
+            <td>I'm your 2-1 cell.</td>
+            <td>I'm your 2-2.</td>
+            <td>I'm your 2-3.</td>
+            <td>I'm your 2-4.</td>
+        </tr>
+        <tr>
+            <td>I'm your 3-1 cell.</td>
+            <td>I'm your 3-2.</td>
+            <td>I'm your 3-3.</td>
+            <td>I'm your 3-4.</td>
+        </tr>
+    </table>
+    <p>
+        The next one adds in row and column titles, by calling them "headers" and giving them the tags, <code>th</code>. They work just like other <code>td</code> elements, and so need to be placed in a <code>tr</code> corresponding to the row they exist in. Isn't making tables the best?
+    </p>
+    <table>
+        <tr>
+            <td>empty space</td>
+            <th>column 1</th>
+            <th>column 2</th>
+            <th>column 3</th>
+            <th>column 4</th>
+        </tr>
+        <tr>
+            <th>row 1</th>
+            <td>I'm your 1-1 cell.</td>
+            <td>I'm your 1-2.</td>
+            <td>I'm your 1-3.</td>
+            <td>I'm your 1-4.</td>
+        </tr>
+        <tr>
+            <th>row 2</th>
+            <td>I'm your 2-1 cell.</td>
+            <td>I'm your 2-2.</td>
+            <td>I'm your 2-3.</td>
+            <td>I'm your 2-4.</td>
+        </tr>
+        <tr>
+            <th>row 3</th>
+            <td>I'm your 3-1 cell.</td>
+            <td>I'm your 3-2.</td>
+            <td>I'm your 3-3.</td>
+            <td>I'm your 3-4.</td>
+        </tr>
+    </table>
+    <p>
+        This next one introduces merging rows and columns together.
+    </p>
+    <table>
+        <tr>
+            <th colspan="2">Animals</th>
+        </tr>
+        <tr>
+            <th colspan="2">Hippopotamus</th>
+        </tr>
+        <tr>
+            <th rowspan="2">Horse</th>
+            <td>Mare</td>
+        </tr>
+        <tr>
+            <td>Stallion</td>
+        </tr>
+        <tr>
+            <th colspan="2">Crocodile</th>
+        </tr>
+        <tr>
+            <th rowspan="2">Chicken</th>
+            <td>Hen</td>
+        </tr>
+        <tr>
+            <td>Rooster</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,124 @@
+h1 {
+    color: red;
+}
+
+p,
+li {
+    color: green;
+}
+
+.special {
+    color: orange;
+    font-weight: bold;
+}
+
+li em {
+    color: rebeccapurple;
+}
+
+h1 + p {
+    font-size: 200%;
+}
+
+nav li {
+    font-size: 150%;
+}
+
+li a {
+    color: hotpink;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.outer {
+    border: 5px solid black;
+}
+
+.innerBox {
+    padding: 10px;
+    width: calc(90% - 30px);
+    background-color: rebeccapurple;
+    color: white;
+}
+
+.largeBox {
+    border: 5px groove black;
+    background-image: linear-gradient(rgb(0 0 255 / 0.5), rgb(255 255 0 / 0.5));
+    /*    background-size: 50%;*/
+}
+
+    .largeBox:hover {
+        background-image: url("/images/sheep-60.png");
+    }
+
+.innerLargeBox {
+    padding: 10px;
+    background-color: green;
+    width: 50%;
+}
+
+
+.topBar {
+    background-color: purple;
+    color: white;
+    width: 20%;
+}
+
+.midBar {
+    color: white;
+    background-color: darkblue;
+    width: 80%;
+}
+
+.botBar {
+    color: white;
+    background-color: darkred;
+    width: calc(80%/2);
+}
+
+.box {
+    margin: 30px;
+    width: 100px;
+    height: 100px;
+    background-color: rebeccapurple;
+    transform: rotate(-0.8turn);
+}
+
+.sheepPic {
+    width: 500px;
+    height: 500px;
+}
+
+    .sheepPic:hover {
+        transform: translate(400px, -200px) rotate(30deg);
+    }
+
+.at-test {
+    background-color: pink;
+}
+
+@media (width >= 900px) {
+    .at-test {
+        background-color: blue;
+    }
+}
+
+.p-long {
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    background-color: red;
+    background-image: url("/images/sheep-60.png");
+    background-position: 10px 10px;
+    background-repeat: repeat-x;
+    background-attachment: local;
+}
+
+.p-short {
+    padding: 10px 15px 15px 5px;
+    background: red url("/images/sheep-60.png") 10px 10px repeat-x local;
+}

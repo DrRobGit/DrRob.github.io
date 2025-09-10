@@ -1,0 +1,30 @@
+li[class] {
+    font-size: 120%;
+}
+
+li[class="a"] {
+    background-color: yellow;
+}
+
+li[class~="a"] {
+    color: red;
+}
+
+li[class|="a"] {
+    font-style: italic;
+}
+
+/*substring selectors*/
+li[class^="c"] {
+    font-size: 150%;
+}
+
+li[class$="c"] {
+    background-color: yellow;
+}
+
+li[class*="c"] {
+    color: red;
+}
+
+

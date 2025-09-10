@@ -1,0 +1,61 @@
+.def {
+    font-weight: bold;
+    text-decoration: underline;
+    color: red;
+}
+
+/*multiple classes*/
+.notebox {
+    border: 4px solid #666666;
+    padding: 0.5em;
+    margin: 0.5em;
+    color: blue;
+}
+
+    .notebox.warning {
+        border-color: orange;
+        font-weight: bold;
+    }
+
+    .notebox.danger {
+        border-color: red;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+.danger {
+    font-size: x-large;
+}
+
+
+
+/*id selectors*/
+#one {
+    background-color: yellow;
+    color: blue;
+}
+
+.p-class {
+    background-color: aqua;
+    font-size: x-large;
+}
+
+h1#heading {
+    color: rebeccapurple;
+}
+
+/*Selector Lists*/
+.class1,
+.class2,
+.class3 {
+    background-color: brown;
+}
+
+.class1 {
+    color: aqua;
+}
+
+.class2,
+.class3 {
+    color: yellow;
+}

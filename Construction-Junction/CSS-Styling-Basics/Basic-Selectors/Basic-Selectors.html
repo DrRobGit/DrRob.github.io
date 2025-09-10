@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    <link rel="stylesheet" href="Basic-Selectors.css" />
+    <title>Basic Selectors</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Dr. Rob Tutoring</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>Knowledge Bank</li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>
+            Basic Selectors
+        </h1>
+        <pre><code>
+            h1 {
+                color: blue;
+                background-color: yellow;
+            }
+
+            .special {
+                color: red;
+            }
+        </code></pre>
+        <p>
+            <code>h1</code> and <code>.special</code> is the <span class="def">selector</span>. It is selecting the <code>h1</code> element in the html. The element itself can be called the <span class="def">subject of the selector</span>.
+        </p>
+        <hr />
+        <p>
+            <span class="def">type selectors</span> are also called <span class="def">tag selectors</span> or <span class="def">elements selectors</span>. They are the basic sort of selector, like the <code>h1</code> shown at the top of the page.
+        </p>
+        <p>
+            <span class="def">class selectors</span> begin with a "." and are case sensitive. An example is the <code>.special</code> selector in the top example.
+        </p>
+
+        <hr />
+        <p>
+            You can have different elements with the same class name. For example, h1 and p with class "highlight". These are then targeted in the CSS as follows:
+        </p>
+        <pre>
+        <kbd>h1.highlight</kbd>
+        <kbd>p.highlight</kbd>
+        </pre>
+
+        <hr />
+        <p>
+            multiple classes can be applied to elements at the same time. And multiple classes can be selected in the CSS by the same selector:
+        </p>
+        <div class="notebox">This is an informational note. Class is notebox</div>
+
+        <div class="notebox warning">This note shows a warning. Class is "notebox warning"</div>
+
+        <div class="notebox danger">This note shows danger! Class is "notebox danger"</div>
+
+        <div class="danger">
+            This won't get styled — it also needs to have the notebox class. Class is "danger"
+        </div>
+        <p>
+            So maybe this is useful if you have a few "notebox" things and want to have some of them be "danger" and some of them be "warning." But you also want whatever you are doing to the regular "notebox" to still be happening to the "dangers and warnings".
+        </p>
+        <p>
+            Whatever rule you put in the "notebox" selector gets done to anything with that class, even if you have another selector which is specifying two classes need to be present.
+        </p>
+        <p>
+            So its kind of like a sub category situation. The blue text is on the "notebox" selector, not the danger or warning, yet it gets applied to all.
+        </p>
+
+<p>
+The "notebox danger" box has the same size text as the "danger" box below it that doesn't have an outline. That box doesn't have an outline because it is just "danger" not also "notebox" which is where the grey outline is applied. The text is the same size because the "danger" class is set to have x-large text size. This rule then applies to both "danger" and "notebox danger" because "danger is present in both cases.
+</p>
+<p>
+This strategy of multiple classes therefore let's you target anything with a particular class (if you select based on only one class) or zero in on specific situations where all the classes are present (if you select based on having all the classes.
+</p>
+        <hr />
+        <p>
+            the <span class="def">id selector</span> uses "id" in the same way "class" is used in an element. Except the id can be used only once per page. It is selected using "#" instead of "." in the CSS.
+        </p>
+        <p>
+            It also overrides other rule which may apply to that particular element. For example, the below paragrpahs have class=p-class but the yellow one is also id=one. The p-class is set to have large text so both get large text, but the background-color is overridden by the id=one rule.
+        </p>
+        <h1 id="heading">ID selector id=heading</h1>
+        <p class="p-class">
+            Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
+            daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+        </p>
+
+        <p id="one" class="p-class">
+            (id=one)Gumbo beet greens corn soko <strong>endive</strong> gumbo gourd. Parsley
+            shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra
+            wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini.
+        </p>
+
+        <hr />
+        <span class="def"> selector lists</span> are lists of selectors which are going to have the same rules. So
+        <pre>
+        <code>
+                h1 {
+                color: blue;
+                }
+
+                .special {
+                color: blue;
+                }
+            </code>
+        </pre>
+        can be written like
+        <pre>
+        <code>
+                h1,
+                .special {
+                color: blue;
+                }
+            </code>
+        </pre>
+        <p class="class1">this is the class1 p</p>
+        <p class="class2">this is the class2 p</p>
+        <p class="class3">this is the class3 p</p>
+
+        <hr />
+        <p>
+            The <span class="def">universal selector</span> is "*" and is used to select all elements on the page.
+        </p>
+        <p>
+            It can be used with descendent combinator, which is just a space, to select everything inside a particular element. For example, 
+        </p>
+        <code>p *{</code>
+        <p>
+            will select everything (*) that is inside of a (p).
+        </p>
+        <p>Using it on its own as in</p>
+        <code>* {</code>
+        <p> results in everything on the page being selected.</p>
+    </main>
+</body>
+</html>

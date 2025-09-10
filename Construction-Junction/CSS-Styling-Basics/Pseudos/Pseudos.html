@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    <link rel="stylesheet" href="Attribute-Selectors.css" />
+    <title>Attribute Selectors</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Dr. Rob Tutoring</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>Knowledge Bank</li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>
+            Pseudo-classes and pseudo-elements
+        </h1>
+        <hr />
+        <h2>Pseudo-class</h2>
+        <p>
+            selects based on state. 
+        </p>
+        <p>like hovering or first element of it's type.</p>
+        <p>They help to reduce need to actually assign a class explicitly as often</p>
+        <p>Pseudo classes start with a colon :</p>
+        <p>
+            Here is an example CSS:
+        </p>
+        <pre><code>
+            article p:first-child {
+                font-size: 120%;
+                font-weight:bold;
+            }
+            </code></pre>
+        <p>
+            This will cause the first <code>&lt;p&gt;</code> element in an <code>&lt;article&gt;</code> element to get the styling. We could always assign a class to the first paragraph, but if another paragraph gets added, we would need to move that assignment. And this way, we don't have to anyway.
+        </p>
+        <p>
+            Note on using the <code>:first-child</code> thing:
+        </p>
+        <p>
+            Using it as <code>p:first-child</code> will only select the first-child element if that element is also a <code>&lt;p&gt;</code>. If the first-child element is not a <code>&lt;p&gt;</code>, then the rule will not be applied. In order to select the first <code>&lt;p&gt;</code> element even if there are other elements before it, you should use the <code>p:first-of-type</code>.
+        </p>
+
+        <h2>User-action pseudo classes</h2>
+        <p>also called <strong>dynamic pseudo classes</strong></p>
+        <p>
+            Examples are things like <code>:hover</code> and <code>:focus</code>
+        </p>
+
+        
+    </main>
+</body>
+</html>

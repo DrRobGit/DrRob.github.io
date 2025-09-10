@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    <link rel="stylesheet" href="Attribute-Selectors.css" />
+    <title>Attribute Selectors</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Dr. Rob Tutoring</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>Knowledge Bank</li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>
+            Attribute Selectors
+        </h1>
+        <hr />
+        <h2>Presence and Value Selectors</h2>
+        <p>
+            These help select based on whether or not there is an attribute present. <strong>The following all select exact match plus other stuff.</strong>Using the attribute "class" as an example:
+        </p>
+        <ul>
+            <li>Item 1 (no attribute)</li>
+            <li class="a">Item 2 (class="a")</li>
+            <li class="a b">Item 3 (class="a b")</li>
+            <li class="ab">Item 4 (class="ab")</li>
+            <li class="a-b">Item 5 (class="a-b)"</li>
+        </ul>
+        <p>
+            with the following CSS:
+        </p>
+        <pre><code>
+    li[class] {
+    font-size: 120%;
+    }
+
+    li[class="a"] {
+    background-color: yellow;
+    }
+
+    li[class~="a"] {
+    color: red;
+    }
+
+    li[class|="a"] {
+    font-style: italic;
+    }
+</code></pre>
+        <ul>
+            <li>So Item 1 is not selected.</li>
+            <li><code>li[class]</code> selects any li with the class attribute, regardless of what the class actually is</li>
+            <li><code>li[class="a"]</code> selects any li whose class attribute is set to exactly "a" with no additional clases like item 3 has.</li>
+            <li><code>li[class~="a"]</code> just like the previous with exact match only it will also select any that have that class in a space-separated list. So this selects both 2 and 3.</li>
+            <li><code>li[class|="a"]</code> selects exact match of "a" but also selects anything with "a-" where there can be other stuff after the hyphen.</li>
+        </ul>
+        <hr />
+
+        <h2>Substring matching selectors</h2>
+
+        <ul>
+            <li class="c">Item 1 (class="c")</li>
+            <li class="cd">Item 2 class="cd"</li>
+            <li class="dec">Item 3 class="dac"</li>
+            <li class="decde">Item 4 class="dcabc"</li>
+        </ul>
+        <pre><code>
+    li[class^="c"] {
+    font-size: 150%;
+    }
+
+    li[class$="c"] {
+    background-color: yellow;
+    }
+
+    li[class*="c"] {
+    color: red;
+    }
+</code></pre>
+        <ul>
+            <li><code>li[class^="c"]</code> selected if class <strong>begins</strong> with "c" (1 and 2 selected)</li>
+            <li><code>li[class$="c"]</code> selected if class <strong>ends</strong> with "c" (1 and 3 selected)</li>
+            <li><code>li[class*="c"]</code> selected if class has c <strong>anywhere</strong> (all are selected.</li>
+        </ul>
+    </main>
+</body>
+</html>
