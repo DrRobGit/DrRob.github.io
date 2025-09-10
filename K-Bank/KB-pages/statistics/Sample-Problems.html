@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <!--Style Page-->
+    <link rel="stylesheet" href="KB-statistics-style.css" />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    $$ \newcommand{\vect}[1]{\mathbf{\vec{#1}}} $$
+
+    <title>KB-Statistics</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Statistics Knowledge Bank</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section>
+
+                <h2>Sample Problems</h2>
+                <p>
+                    Sample problems from Navidi 2nd edition.
+                </p>
+            </section>
+            <section>
+                <h3>2.2.7</h3>
+                <h4>Question</h4>
+                <p>
+                    A test consists of 15 questions. Ten are true-false questions, and five are multiple choice questions that have four choices each. A student must select an answer for each equation. In how many ways can this be done?
+                </p>
+                <h4>Answer</h4>
+                <p>
+
+                </p>
+            </section>
+
+            <section>
+                <h3>2.2.9</h3>
+                <h4>Question</h4>
+                <p>
+                    A computer password consists of eight characters.
+                </p>
+                <ol type="a">
+                    <li>How many different passwords are possible if each character may be any lowercase letter or digit?</li>
+                    <li>How many different passwords are possible if each character may be any lowercase letter or digit, and at least one character must be a digit?</li>
+                    <li>
+                        A computer system requires that passwords contain at last one digit. If eight characters are generated at random, and each is equally likely to be any of the 26 letters or 10 digits, what is the probability that a valid password will be generated?
+                    </li>
+                </ol>
+                <h4>Answer</h4>
+                <p>
+
+                </p>
+            </section>
+
+            <section>
+                <h3>2.3.7</h3>
+                <h4>Question</h4>
+                <p>
+                    A widget is being made at a factory. The process involves sanding them, analyzing the thickness, then either approving them or use, rejecting them, or sanding them a second time. The following probabilities apply to this process:
+                </p>
+                <ul>
+                    <li>After the first sanding, 70% meet specification and are accepted, 10% are rejected and scrapped, and 20% are sent for a second sanding. </li>
+                    <li>
+                        Of those that get sent for a second sanding, 90% are accepted and 10% are scrapped after this second sanding.
+                    </li>
+                </ul>
+                <ol type="a">
+                    <li>
+                        What is the probability a widget is sanded only once?
+                    </li>
+                    <li>
+                        Given that a widget is not re-sanded, what is the probability that it is scrapped?
+                    </li>
+                    <li>
+                        What is the probability that a widget is scrapped?
+                    </li>
+                    <li>
+                        Given that a widget is scrapped, what is the probability that is was sanded twice?
+                    </li>
+                    <li>
+                        What is the probability that a widget is accepted at all? (So after either the first or second sanding.)
+                    </li>
+                    <li>
+                        For an accepted widget, what is the probability that it was sanded twice? (There are two opportunities for acceptance.)
+                    </li>
+                    <li>
+                        For an accepted widget, what is the probability that it was sanded only once?
+                    </li>
+                </ol>
+                <h4>Answer</h4>
+                <p>
+                    Write out a tree diagram and a Ven diagram or block diagram to help visualize the situations.
+                </p>
+                <p>
+                    We will make the following letter designations:
+                </p>
+                <ul>
+                    <li>$S_1=$ first sanding</li>
+                    <li>$r_1=$ rejected on first sanding</li>
+                    <li>$a_1=$ accepted on first sanding</li>
+                    <li>$S_2=$ sent for a second sanding</li>
+                    <li>$r_2=$ rejected on second sanding</li>
+                    <li>$a_2=$ accepted on second sanding</li>
+                </ul>
+                <ol type="a">
+
+                    <li>
+                        <p>
+                            $P(S_2^c)=?$
+                        </p>
+                        <p>
+                            $=P(m_1 \cup r_1) = P(m_1)+P(r_1)=0.8$
+                        </p>
+                        <p>
+                            This works because there is no overlap between $m_1$ and $r_1$ events.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>$P(r_1|S_2^c)=?$</p>
+                        <p>
+                            $=\frac{P(r_1 \cap S_2^c)}{P(S_2^c)}=\frac{P(r_1)}{P(S_2^c)}=\frac{0.1}{0.8} = 0.125$
+                        </p>
+                        <p>
+                            Be careful about what we are being asked. We aren't being asked what the chance of being rejected the first time is (10%). We are being asked that if we happen to have a widget that is definitely not going to be sanded again, what is the chance that it is getting rejected. Notice how in the second situation, we have injected additional information into the situation, additional knowledge that is not present in the simpler, 10%.
+                        </p>
+                        <p>
+                            The second thing to notice is that $P(r_1 \cap S_2^c)$ is just equal to $P(r_1)$. To see this, look at the block diagram and notice trace out the two regions. The overlap of $r_1$ with everything that <em>isn't</em> $S_2$ is just $r_1$. Remember that everything that isn't $S_2$ is just a round-a-bout way of referring to everything that <em>is</em> $S_1$.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>$P(r_1 \cup r_2)=$?</p>
+                        <p>
+                            $=P(r_1) + P(r_2|S_2)P(S_2) = 0.1 + (0.1)(0.2) = 0.12$
+                        </p>
+                        <p>
+                            When break up the classic union probability in a classic ven diagram, we have $P(A)+P(B)-P(A\cap B)$, but in this case, there is no overlap and so no intersection term. In addition, there is a "conversion" which must take place since we cannot work directly with $P(r_2)$ as that would, presumably, refer to the 10%. However, that 10% is in reference to being within $S_2$ so we use the term shown to account for that.
+                        </p>
+                        <p>
+                            Another way to get to view the change in the term is from the tree diagram. We want to talk about $r_2$ but to get to it, we must first pass through $S_2$. So that location really refers to <em>two</em> events taking place, $r_2$ and $S_2$ or $r_2\cap S_2$. So we write $P(r_1)+P(r_2\cap S_2)$ and then use the definition of the conditional to change the second term to what we used above.
+                        </p>
+                        <p>
+                            An alternative approach to this problem is that: $P(r_1\cup r_2) = 1- P(r_1^c\cap r_2^c)$. The intersection here includes everything except $r_1$ and $r_2$. Which only leaves us with the two acceptance regions. Therefore this term is equal to:
+                        </p>
+                        <p>
+                            $P(r_1^c\cap r_2^c) = P(a_1) + P(a_2|S_2)P(S_2)$ which we could then do a similar intersection notation instead of conditional if we wanted to. This comes out to 0.88, which when subtracted from 1 gives the correct answer of 0.12.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            We phrase this one as $P(S_2|r_1\cup r_2)=?$.
+                        </p>
+                        <p>
+                            $=\frac{P(S_2\cap(r_1\cup r_2))}{P(r_1\cup r_2)}$
+                        </p>
+                        <p>
+                            The intersection of $S_2$ with the union of $r_1$ and $r_2$ is just $r_2$. But to get to $r_2$, we see from our tree diagram or the ven diagram, that we have to go through $S_2$, so
+                        </p>
+                        <p>
+                            $P(S_2\cap(r_1\cup r_2))=P(r_2|S_2)P(S_2)$
+                        </p>
+                        <p>
+                            Repeating the previous line, this leaves us with 
+                        </p>
+                        <p>
+                            $=\frac{P(S_2\cap(r_1\cup r_2))}{P(r_1\cup r_2)}= \frac{P(r_2|S_2)P(S_2)}{P(r_1\cup r_2)} = \frac{(0.1)(0.2)}{(0.12)} = 0.167$
+                        </p>
+                    </li>
+                    <li>
+                        <p>$P(a_1\cup a_2)=?$</p>
+                        <p>
+                            From previous reasoning on part c with the similar rejection-based question, we have
+                        </p>
+                        <p>
+                            $=P(a_1)+P(a_2|S_2)P(S_2) = 0.7 + (0.9)(0.2) = 0.88$
+                        </p>
+                        <p>
+                            Alternatively, we can recognize that for a widget to be accepted at all, it has to be never rejected. This means we can write
+                        </p>
+                        <p>
+                            $=1-P(r_1\cup r_2)$
+                        </p>
+                        <p>
+                            which we have already solved in part c. Note that this is not a case where we can use the compliment to negate the $a_1$ and $a_2$ events. The complement of $a_1$ also contains the event $S_2$, not only $r_1$. So we should be careful. Certainly reject is the opposite of accept in common usage, but here they are just names for our events so we must be careful.
+                        </p>
+                    </li>
+                    <li>
+                        <p></p>
+                    </li>
+                </ol>
+                <p>
+                </p>
+            </section>
+
+            <section>
+                <h3>Ex2.26</h3>
+                <h4>Question</h4>
+                <p>
+                    0.5% of people in a town have a disease. If a person has the disease, they will have a positive test result is 99% of the time. If a person doesn't have the disease, the probability to have positive test result is 1%. If a person tests positive, what is the probability that the person actually has the disease?
+                </p>
+                <h4>Answer</h4>
+                <p>
+
+                </p>
+            </section>
+
+            <section>
+                <h3>2.3.29</h3>
+                <h4>Question</h4>
+                <p>Data given in Ex2.26</p>
+                <ol type="a">
+                    <li>
+                        A person tests negative. What is the probability they have the disease?
+                    </li>
+                    <li>
+                        Repeated tests are independent. If a person has the disease, what is the probability to test positive on two tests?
+                    </li>
+                    <li>
+                        If a person doesn't have the disease, what is the probability to have a positive result on both tests?
+                    </li>
+                    <li>
+                        If a person tests positive on two tests, what is the probability they have the disease?
+                    </li>
+                </ol>
+            </section>
+        </article>
+    </main>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+
+</html>

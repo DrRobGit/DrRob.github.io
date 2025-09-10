@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    $$ \newcommand{\vect}[1]{\mathbf{\vec{#1}}} $$
+
+    <title>Main Page</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Dr. Rob Tutoring</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h2>Topics on Potential Energy</h2>
+            <section>
+                <img height="550" width="800" src="Potential-Energy-and-Forces.png" />
+                <h3>Negative sign on Gravitational but not electric potential energy</h3>
+                <p>
+                    The simplified gravitational potential energy is $U_G=mgh$ with no negative sign. The full versions of both gravity and electric are
+
+                    $$
+                    U_G=-G\frac{Mm}{r}
+                    $$
+                    $$
+                    U_E=k\frac{Qq}{r}
+                    $$
+
+                    where we see that <strong>$U_G$ has a negative sign</strong> but <strong>U_E does not</strong>. Why is this?
+                </p>
+                <p>
+                    The reason is because gravity is always attractive but charges can either repel or attract.
+                </p>
+
+                <p>
+                    Under no other influence, objects want to go from high $U$ to low $U$. Two objects in space a distance $r=5$ away will have $U_G\sim-\frac{1}{5}$. In order to reduce $U_G$, it must become <em>more negative</em> and so $r$ must decrease to maybe $r=2$ or even $r=0.5$ so the fraction becomes a <strong>more negative</strong> number.
+                </p>
+
+                <p>
+                    The negative sign must be there because mass is always positive and the force is always attractive. For electric, if the charges are both positive, they repel. And we must therefore have lower $U_E$ exist at greater separation between the charges, so they move away and $r$ increases. Just the opposite situation as for $U_G$.
+                </p>
+                <p>
+                    If the charges are opposite in sign, then the product is negative, a negative sign results, we have attraction and the result is similar to $U_G$.
+                </p>
+            </section>
+
+            <section>
+                <h3>Potential and Force as Negative Gradient</h3>
+
+                <p>
+                    Both electric and gravity forces are the negative gradient of their potential energies.
+                </p>
+                <p>
+                    Since both are conservative forces, they can be represented as the gradient of a scalar potential, $\phi_G$ and $\phi_E$. Then we have that
+                    $$
+                    \vect{F}_G=\nabla \phi_G
+                    $$
+                    and
+                    $$
+                    \vect{F}_E=\nabla \phi_E
+                    $$
+
+                    But we define potential <em>energy</em> as the negative of this potential so that
+                    $$
+                    U_G=-\phi_G
+                    $$
+                    and
+                    $$
+                    U_E=-\phi_E
+                    $$
+                </p>
+                <p>
+                    Making this substitution in the force equations, we get
+
+                    $$
+                    \vect{F}_G=-\nabla U_G
+                    $$
+                    and
+                    $$
+                    \vect{F}_E=-\nabla U_E
+                    $$
+                </p>
+
+                <h4>Don't mix up potentials</h4>
+                <p>
+                    The potential $\phi$ used above for the scalar potential of the forces is not the electric potential. The electric potential is related to the electric field by
+                </p>
+                $$
+                \vect{E}=-\nabla\varphi
+                $$
+                <p>
+                    So the electric field is the negative gradient of the electric potential. A nice similarity between the forces and their own potentials.
+                </p>
+                <p>
+                    From this, combined with the relaitionship between force and electric field of $\vect{F}_E=q\vect{E}$, we have that
+                </p>
+                $$
+                \phi=-q\varphi
+                $$
+                <p>
+                    as the relationship between the force potential and the electric potential, which is just "the volts."
+                </p>
+            </section>
+
+            <section>
+                <h3>Positive $\hat{r}$ of $\vect{F}_G$ in picture</h3>
+                <p>
+                    We must be careful here. In the picture, the origin is on the left ball. The right ball therefore feels a force in the negative $\hat{r}$ direction. The left ball feels an equal but opposite direction force which must therefore be in the positive $\hat{r}$ direction.
+                </p>
+                <p>
+                    However, since the left ball is at the origin, where $r=0$, the calculation of the force would lead to infinity. We therefore use the fact that there is an equal but opposite force to determine the force it feels.
+                </p>
+            </section>
+
+            <section>
+                <h3>Choosing a positive direction, $U_G=mgh$, and $U_G=-mgh$</h3>
+
+                <p>
+                    $U_G=mgh$ is only if you select up to be positive.
+                </p>
+                <p>
+                    You must use $U_G=-mgh$ if you select down to be positive.
+                </p>
+
+                <p>
+                    More specifically, if you select the direction where h increases to be the same as the direction where g points (down is positive) then use the negative one.
+                </p>
+                <p>
+                    We can see this from the fact objects want to move from high to low potential energies. Refer to the images for the boxes here.
+                </p>
+                <figure>
+                    <img height="593" width="739" src="Umgh.png" />
+                    <figcaption>Four different combinations to define location of zero and the positive direction. For $U=mgh$, only up as the positive direction gives the box falling downward.</figcaption>
+                </figure>
+
+                <figure>
+                    <img height="593" width="739" src="U-mgh.png" />
+                    <figcaption>Four different combinations to define location of zero and the positive direction. For $U=-mgh$, only down as the positive direction gives the box falling downward.</figcaption>
+                </figure>
+
+                <p>
+                    We have four different ways to define positive direction and where the zero is located. We want the box to fall downward in all cases. Only the cases outlined in green give us the box falling toward lower potential energies so those are the only cases we can use. If we wanted to define downward as positive, we would need to use $U=-mgh$ as shown or use $glt0$ which may cause more issues we other familiar equations like the kinematic equations.
+                </p>
+            </section>
+
+            <section>
+                <h3>Approximation of $U_G$ as mgh</h3>
+                <p>Further explanation is <a href="../KB-explains/KBE-Umgh-approx.html">here</a></p>
+                <p>
+                    The equation $U_G=mgh$ is an approximation that only works when considering a small mass near a much greater mass. If $R$ is the radius of the greater mass object, then the small object must be a distance $h\ll R$ from the surface of the larger object.
+                </p>
+                <p>
+                    For example, the large object is Earth and the small object is a ball 10 cm in diameter. For Earth, $R=6378$ km. In order to use $U=mgh$, the ball cannot be a height $h$ above the surface of Earth close in magnitude to 6378 km. How much less is up to how much error you are willing to have. We can approximate the error by saying that if the ball is at h=600 km, then 600/6000=0.1 is 10% error. Maybe too much. We could restrict to 60 km and have around 1% error. 
+                </p>
+                <p>
+                    The international space station orbits around 400 km above the surface so 400/6000=0.0667 is 6.67% error. So we would probably want to use the full equation instead of the approximation for this important project.
+                </p>
+            </section>
+        </article>
+    </main>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+</body>
+<footer>
+    <img src="/images/sheep-60.png" />
+</footer>
+</html>

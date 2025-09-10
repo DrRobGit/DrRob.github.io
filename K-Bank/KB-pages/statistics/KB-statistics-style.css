@@ -1,0 +1,11 @@
+.vocab {
+    text-decoration: underline;
+}
+
+.EqnBox {
+    border: 2px groove black;
+}
+
+.NoteBox {
+    border: 2px groove red;
+}

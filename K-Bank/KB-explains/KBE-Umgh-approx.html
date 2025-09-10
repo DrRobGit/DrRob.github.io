@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+
+    $$ \newcommand{\vect}[1]{\mathbf{\vec{#1}}} $$
+
+    <title>Main Page</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Dr. Rob Tutoring</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <section>
+                <h2>Approximation of Gravitational Potential Energy with $U=mgh$</h2>
+
+                <p>
+                    The full potential energy expression is
+
+                    $$
+                    U=-G\frac{Mm}{r},
+                    $$
+
+                    where $G$ is the gravitational constant, $M$ and $m$ are the two massses interacting, and $r$ is the distance between their centers.
+                </p>
+                <p>
+                    In many near Earth circumstances, this is can be approximated with
+
+                    $$
+                    U=mgh
+                    $$
+
+                    where $g$ is the acceleration due to gravity.
+                </p>
+            </section>
+
+            <section>
+                <h3>Setting up the system</h3>
+                <p>
+                    We will consider the system shown in the figure shown.
+                </p>
+
+                <figure>
+                    <img src="Umgh-approx.png" />
+                    <figcaption>
+                        One object with mass $M$ and radius $R$ whose center is $r$ away from the center of a second object with mass $m$ and radius not specified. The distance $h$ is from the surface of $M$ to the center of $m$.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    We have two objects. One has radius $R$ and mass $M$. The other does not have a radius variable specified but it must be less than $R$ it does have a mass $m$. The centers of the objects are separated by a distance $r$. The center of object $m$ is a distance $h$ from the surface of object $M$.
+                </p>
+
+                <p>
+                    In the previous paragraph, as well as throughout the rest of this, we will refer to the objects by their mass variable.
+                </p>
+
+                <p>
+                    We will have something to say about the radius of $m$ at the end. For now, think about it as being smaller than $R$ though it won't matter in our analysis yet.
+                </p>
+
+            </section>
+
+            <section>
+                <h3>Deriving the Approximation</h3>
+
+                <p>
+                    The separation $r$ can be written as $r=R+h$ and put into the potential energy equation to get
+
+                    $$
+                    U=-G\frac{Mm}{R+h}.
+                    $$
+
+                    Now we might be interested in approximating this for situations where $m$ is very close to $M$. So close in fact that $h\ll R$ ($\ll$ means "much less than"). To do that, we will first rewrite the equation to look like something we can more easily approximate.
+                </p>
+                <p>
+                    Dividing both top and bottom by $R$, we get
+
+                    $$
+                    U=-G\frac{Mm/R}{1+h/R}.
+                    $$
+
+                    which we will rewrite to look like this
+
+                    $$
+                    U=-\frac{GMm}{R}\frac{1}{1+h/R}
+                    $$
+
+                    The first fraction is just a collection of physical properties so we will ignore it for now and focus on the second fraction which contains our distance $h$.
+                </p>
+
+                <p>
+                    This fraction looks an awful lot like another common expression
+
+                    $$
+                    \frac{1}{1+x}\approx 1-x+x^2-x^3+\cdots
+                    $$
+
+                    This approximation on the right hand side is only good for $0&lt;x&lt;1$.
+                </p>
+                <p>
+                    Applying this to our fraction, we have
+
+                    $$
+                    \frac{1}{1+h/R}\approx 1 - \frac{h}{R} + \left(\frac{h}{R}\right)^2 - \left(\frac{h}{R}\right)^3 + \cdots
+                    $$
+
+                    Since we are considering $h\ll R$, then $h/R \ll 1$ and we only need the first two terms. The biggest magnitude term should be the first term, the 1. Then the second is smaller and the third even smaller than that. The reason we take the second term at all is because we want to preserve <em>some</em> dependence on distance between the objects. If we only took the first term, there would be no way for us to specify how far apart the objects are.
+                </p>
+                <p>
+                    Putting this into our equation for $U$, we get
+
+                    $$
+                    U=-\frac{GMm}{R} \left( 1 - \frac{h}{R} \right)
+                    $$
+
+                    Expanding this out of the parentheses, we have
+
+                    $$
+                    U= -\frac{GMm}{R} + \frac{GMmh}{R^2}
+                    $$
+
+                    We rewrite a little bit in anticipation of the result we are after and write it like
+
+                    $$
+                    U= -\frac{GM}{R}m + \frac{GM}{R^2}mh
+                    $$
+                </p>
+                <p>
+                    The collection of constants in the second term is actually our coveted $g$ constant,
+
+                    $$g=\frac{GM}{R^2}$$
+
+                    From this, we could rewrite the constants in the first term as $GM/R = gR$ and get
+
+                    $$
+                    U = - gRm + gmh
+                    $$
+
+                    Then a simple reordering of the variables gives us what we are after:
+
+                    $$
+                    U = -mgR + mgh
+                    $$
+
+                    well almost. We have $mgh$ but we also have an $mgR$ in there too.
+                </p>
+                <h3>Setting the Zero</h3>
+                <p>
+                    There is a good way and a bad way to get rid of this annoying first term. We will do the bad way first.
+                </p>
+
+                <h4>The bad way! (Don't do it this way!)</h4>
+
+                <p>
+                    We might recognize that the first term looks a lot like the second term but with $h=R$. Since $h=R$ is the surface of $M$, that means that $m$ is at the surface in this case. We want that location to have $U=0$ and so say that this first term is actually zero and stop writing it.
+
+                </p>
+                <p>
+                    This is bad because
+                    <ol>
+                        <li>In order to say that $h=R$ at the surface of $M$, we would need to have $h=0$ at the center of $M$. We could potentially do that but we already have $r$ which is zero there and would rather have $h$ measure from the surface of $M$.</li>
+                        <li>We can't just take a term which contains a bunch of non-zero values ($m$, $g$, and $R$) and say it is zero.</li>
+                    </ol>
+                </p>
+
+                <h4>The correct way</h4>
+                <p>
+                    The bad way is easy to hand wave and get away with but it is wrong. The correct way uses a very important fact:
+                </p>
+                <p>
+                    Only differences in potential energy matter. The amount of potential energy at some particular location only matters in comparison to the amount at some other location.
+                </p>
+                <p>
+                    For the original potential energy equation, all values can be compared to the value of $U=0$ when $r\rightarrow\infty$. But we can also always redefine the location where $U=0$. This redefintion is all we need to do.
+                </p>
+                <p>
+                    We implicitly defined $h$ as being zero at the surface of $M$ in our set up and we will define $U=0$ at this location. To do this, we use the potential energy at the surface as a reference energy. Then, using our new potential energy equation our reference location of $h=0$ has potential energy given by
+
+                    $$
+                    U_0=-mgR + mg(0) = -mgR
+                    $$
+
+                    The potential energy at any location $h$, is given by
+
+                    $$
+                    U_h = -mgR + mgh
+                    $$
+
+                    The amount of potential at location $h$ compared to the reference at the surface is
+
+                    $$
+                    U = U_h - U_0 = -mgR + mgh - (-mgR) = mgh
+                    $$
+
+                    This simplifies to our much-loved equation
+
+                    $$
+                    U=mgh
+                    $$
+
+                    fresh with zero potential energy when $h=0$ and increasing potential energy as $h$ increases.
+                </p>
+            </section>
+            <section>
+
+                <h3>Direction of positive distance</h3>
+                <p>
+                    Note that this provides some additional insight into why we can't use down as the positive direction if we want to use this equation. We would instead need to use $U=-mgh$. It's because we haven't changed the direction of higher or lower potential energies from the original equation. All we did was change the reference zero location and the sign of the values. And I guess the values themselves are different too, but you get the idea. We didn't change where the high and low potential energies are. Far away has greater values then closer.
+                </p>
+
+            </section>
+
+            <section>
+                <h3>Size of $M$ and $m$</h3>
+                <p>
+                    We said we would make a note about this size of the objects so let's do that now. First thing to say is that obviously there is a problem where if the center of $m$ is at $h=0$, then some amount of $m$ must be inside $M$. So there is a bit of needing to look at only the math here. This isn't a problem in practice because only differences in $U$ matter.
+                </p>
+
+                <p>
+                    The other thing is that we really do need to have $m$ be smaller in radius than $R$. Let's call $m$'s radius $R_m$. We need $R_m&lt;R$. To see why, consider the amount of $m$ that overlaps with $M$.
+
+                    differences in $U$ matter, but the amount of overlap would be such that $m$ would be too far away from $M$ for the approximation to work. In other words, $h\ll R$ would no longer be true if we wanted to have no overlap in at least one location and also have the objects be similar in size.
+                </p>
+            </section>
+
+
+        </article>
+    </main>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+
+</html>
