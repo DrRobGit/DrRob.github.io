@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 7 - ROBOCOPY Options 3</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>
+                    <a href="/Bank/KB-main.html">Knowledge Bank</a>
+                </li>
+                <li>Projects</li>
+                <li>
+                    <a href="/blog/blog-main.html">Blog</a>
+                </li>
+                <li>
+                    <a href="/About-Site/about-site.html">About Site</a>
+                </li>
+                <li>About Dr. Rob</li>
+                <li>
+                    <a href="WebDevSelectPage.html">Website Development</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>
+                Lesson 7 -
+                <code>ROBOCOPY</code> Options Part 3: File Selection Options
+            </h2>
+            <p>
+                The file selection options can be used to include or exclude files based on time, name, type of file, certain attributes of files, and other stuff. As usual, we won't talk about all of it, but we will point out some stuff which maybe you'll find useful.
+            </p>
+            <section>
+                <h3>
+                    Based on age and access date:
+                    <code>/MINAGE</code>,
+                    <code>/MAXAGE</code>,
+                    <code>/MAXLAD</code>,
+                    <code>/MINLAD</code>
+                </h3>
+
+                <p>
+                    The image shows how the help describes these options, and there isn't too much else to say about them beyond what it does. All four options are used to exclude files.
+                </p>
+                <img class="printout" src="images/MAXAGE-etc.png" />
+
+                <p>
+                    The
+                    <code>/MAXAGE</code> and
+                    <code>/MINAGE</code> options exclude based on how old the file is.
+                    <code>/MAXAGE</code> excludes files older than the specified age while
+                    <code>/MINAGE</code> excludes files younger than the specified age.
+                </p>
+                <p>
+                    For example,
+                    <kbd>/MAXAGE:10</kbd> sets the maximum age of files to be copied to be 10 days. So if a file is 9 days old, it gets copied. A file that is 11 days old is older than the maximum of 10, so gets excluded.
+                </p>
+                <p>
+                    <kbd>/MINAGE:10</kbd> sets the minimum age of files to be copied to 10 days. So if a file is 9 days old, it is not yet old enough (or ripe enough in fruit terms) to be copied so gets excluded. A file that is 11 days old is plenty old and gets copied.
+                </p>
+                <p>
+                    <code>/MINLAD</code> and
+                    <code>/MAXLAD</code> do the same thing but for the last date accessed.
+                </p>
+                <p>
+                    The syntax for all of these is the same:
+                    <kbd>/OPTION:days</kbd>, that is, you specify the option, then colon, then the number of days. If you need to specify a number of days greater than 1900, then you have to enter a specific date in the YYYYMMDD format.
+                </p>
+            </section>
+
+            <section>
+                <h3>
+                    Exclude based on name or path
+                    <code>/XF</code>
+                    <code>/XD</code>
+                </h3>
+                <p>
+                    As promised, here is a better version of exclusion than
+                    <code>/XCOPY</code> provided. We can specify it directly into the option list in the command using the
+                    <code>/XF</code> option for files or the
+                    <code>/XD</code> option for folders.
+                </p>
+                <p>
+                    The syntax is
+                    <kbd>/XF file</kbd> or
+                    <kbd>/XD dirs</kbd> where
+                    <code>file</code> and
+                    <code>dirs</code> is replaced by what you want to exclude.
+                </p>
+                <p>
+                    For example, to exclude all text documents with extension ".txt" with
+                    <code>/XCOPY</code>, we had to provide a text file with ".txt" written in it. With
+                    <code>ROBOCOPY</code>, we can do the following:
+                </p>
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /XF *.txt</kbd>
+                <p>
+                    Clear your backup and run this command and you too will discover that any files with the extension ".txt" have not been copied. The
+                    <code>*</code> acts as a "wildcard" or placeholder for whatever the file name might be.
+                </p>
+                <p>
+                    We can also exclude any files with a word in the name or path. For example, in my case, I have a "New Microsoft Word Document.docx" and a "New Microsoft Excel Document.xlsx" in a folder. I can exlude both of these by using
+                    <kbd>/XF "* Microsoft *.*"</kbd>. Here we use quite a few of the "wildcard"
+                    <code>*</code>'s.
+                </p>
+
+            </section>
+            <section>
+                <h3>Exclusion Table</h3>
+                <p>
+                    The last thing to mention specifically is the block of options shown below.
+                </p>
+                <img class="printout" src="images/Exclusion-table.png" />
+                <p>
+                    You don't specify anything with these, you just simply type the option in. So
+                </p>
+
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /XN</kbd>
+                <p>
+                    will exclude "newer files." But what does that mean exactly? The table below gives some details on what all the names shown mean when comparing the files between the source and the destination.
+                </p>
+
+                <table>
+                    <tr>
+                        <th rowspan="2">Classification</th>
+                        <th rowspan="2">Option</th>
+                        <th colspan="2">Present in</th>
+                        <th colspan="2">Last Modified Times</th>
+                        <th rowspan="2">File Sizes</th>
+                        <th rowspan="2">File Attributes</th>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>destination</td>
+                        <td>source</td>
+                        <td>destination</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Changed</td>
+                        <!--Options-->
+                        <td>
+                            <code>/XC</code>
+                        </td>
+                        <!--In Source-->
+                        <td>Y</td>
+                        <!--In Dest-->
+                        <td>Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td colspan="2">same</td>
+                        <!--File Size-->
+                        <td style="background-color:lightpink">different</td>
+                        <!--Attributes-->
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Newer</td>
+                        <!--Options-->
+                        <td>
+                            <code>/XN</code>
+                        </td>
+                        <!--In Source-->
+                        <td>Y</td>
+                        <!--In Dest-->
+                        <td>Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td style="background-color:lightpink">Newer (more recent)</td>
+                        <td style="background-color:lightpink">Older</td>
+                        <!--File Size-->
+                        <td>-</td>
+                        <!--Attributes-->
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Older</td>
+                        <!--Options-->
+                        <td>
+                            <code>/XO</code>
+                        </td>
+                        <!--In Source-->
+                        <td>Y</td>
+                        <!--In Dest-->
+                        <td>Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td style="background-color:lightpink">Older</td>
+                        <td style="background-color:lightpink">Newer (more recent)</td>
+                        <!--File Size-->
+                        <td>-</td>
+                        <!--Attributes-->
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Extra</td>
+                        <!--Options-->
+                        <td>
+                            <code>/XX</code>
+                        </td>
+                        <!--In Source-->
+                        <td style="background-color:lightpink">N</td>
+                        <!--In Dest-->
+                        <td style="background-color:lightpink">Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td colspan="2">-</td>
+                        <!--File Size-->
+                        <td>-</td>
+                        <!--Attributes-->
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Lonely</td>
+                        <!--Options-->
+                        <td>
+                            <code>/XL</code>
+                        </td>
+                        <!--In Source-->
+                        <td style="background-color:lightpink">Y</td>
+                        <!--In Dest-->
+                        <td style="background-color:lightpink">N</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td colspan="2">-</td>
+                        <!--File Size-->
+                        <td>-</td>
+                        <!--Attributes-->
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Same</td>
+                        <!--Options-->
+                        <td>
+                            <code>/IS</code>
+                        </td>
+                        <!--In Source-->
+                        <td>Y</td>
+                        <!--In Dest-->
+                        <td>Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td colspan="2">same</td>
+                        <!--File Size-->
+                        <td>same</td>
+                        <!--Attributes-->
+                        <td>same</td>
+                    </tr>
+                    <tr>
+                        <!--Classification-->
+                        <td>Tweaked</td>
+                        <!--Options-->
+                        <td>
+                            <code>/IT</code>
+                        </td>
+                        <!--In Source-->
+                        <td>Y</td>
+                        <!--In Dest-->
+                        <td>Y</td>
+                        <!--Modified Times: Source, Dest-->
+                        <td colspan="2">same</td>
+                        <!--File Size-->
+                        <td>same</td>
+                        <!--Attributes-->
+                        <td style="background-color:lightpink">different</td>
+                    </tr>
+                </table>
+                <p>
+                    Be sure to notice that the "Same" and "Tweaked" files are <em>included</em>, not excluded. So for instance, recall that if we run the our <code>ROBOCOPY</code> command twice with just the <code>/E</code> option, it will skip all files and folders the second time. However, if we add in the <code>/IS</code> option to include same files, we will see in the summary section that it did in fact copy all the files, even though they were all the same.
+                </p>
+            </section>
+            <section>
+                <h3>Suggested File Selection Options</h3>
+                <p>
+                    I don't have any suggestions for this one. We won't be using them in the future examples, but feel free to experiment and use whatever works for your purposes.
+                </p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

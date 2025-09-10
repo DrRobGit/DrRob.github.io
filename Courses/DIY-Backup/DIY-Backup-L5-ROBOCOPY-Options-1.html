@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 5 - ROBOCOPY Options 1</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Lesson 5 - <code>ROBOCOPY</code> Options Part 1: So Many Options to Choose From!</h2>
+            <section>
+                <h3>Introducing the Options</h3>
+                <p>
+                    Bring up the <code>ROBOCOPY</code> help information to view the options. Remember that means we type in <kbd>ROBOCOPY /?</kbd>.
+                </p>
+                <p>
+                    There is much more printed out than the previous commands we have used but we will proceed the same as before, systematically. The first thing we see is the name of the command. They've made a nice little header for us isn't that fun?
+                </p>
+                <img class="printout" src="images/ROBOCOPY4.png" />
+                <p>
+                    It let's us know the time and date just for fun, then it tell us the syntax for the command.
+                </p>
+                <p>
+                    We already knew about the <samp>ROBOCOPY source destination</samp> part, though notice that here, the destination is required whereas it was optional in <code>XCOPY</code>. The new part is the <samp>[file [file]...] [options]</samp> part.
+                </p>
+                <p>
+                    First, we can see this is really two parts because the <samp>file</samp> stuff is enclosed completely by <samp>[]</samp> then there is a space followed by <samp>[options]</samp>. Remember that a space is used to separate inputs to a command.
+                </p>
+                <p>
+                    The <samp>file</samp> stuff, as the definition below the syntax suggests, is where you can specify information about specific files you may want to copy. We won't be using this feature.
+                </p>
+                <p>
+                    We will be using the options quite a bit though and the rest of the help information lists all the options you can use with <code>ROBOCOPY</code>. In fact, there are so many options, that it groups them together for us into 6 different categories: copy, throttling, selection, retry, logging, and job options. The final section has a few remarks about the application of certain options.
+                </p>
+                <p>
+                    In the next few lessons, we will be looking at these options and talking about the ones which may be the most useful to us for our application of a backup program. We may also touch on some others just to demystify the command a little bit.
+                </p>
+
+            </section>
+            <section>
+                <h3>Familiar Options</h3>
+                <p>
+                    First of all, we will cover the options that we already know. Look at the first section of options called <samp>Copy Options</samp>. There we see the first two are <samp>/S</samp> and <samp>/E</samp> which we learned about back with <code>XCOPY</code>. They do the same thing here.
+                </p>
+                <p>
+                    Option <code>/J</code> for using unbuffered I/O is still with us and is listed a few lines down in the copy options section.
+                </p>
+                <p>
+                    Option <code>/L</code> for only listing and not actually copying anything is still here too. It is the first option in the Logging Options section.
+                </p>
+                <p>
+                    Options <code>/D</code> <code>/Y</code> and <code>/EXCLUDE</code> are not present in the list. <code>ROBOCOPY</code> has different behavior than <code>XCOPY</code> and we won't be needing these options. Exclusion options are listed in the File Selection Options section and we see we have many more options than merely listing parts of a file name like with <code>XCOPY</code>.
+                </p>
+                <p>
+                    Option <code>/D</code> won't be needed since <code>ROBOCOPY</code> only copies files that have changed by default. You could still specify dates of files to <em>exclude</em>, using the <samp>/MAXAGE</samp> and related options in the File Selection Options section.
+                </p>
+                <p>
+                    Finally, since <code>ROBOCOPY</code> only copies changed files by default, we don't need to confirm the copy with the <code>/Y</code> option.
+                </p>
+            </section>
+
+            <section>
+                <h3>Unfamiliar Options</h3>
+                <p>
+                    We will divide relevent options into the next several lessons and discover what they do and why we might or might not use them. Some of these options include
+                </p>
+                <ul>
+                    <li><code>/LEV:n</code></li>
+                    <li><code>/B</code></li>
+                    <li><code>/COPY:</code></li>
+                    <li><code>/PURGE</code></li>
+                    <li><code>/R</code></li>
+                    <li><code>/X</code></li>
+                    <li><code>/LOG</code></li>
+                </ul>
+                <p>
+                    We will also be discussing many additional options, not just these ones.
+                </p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

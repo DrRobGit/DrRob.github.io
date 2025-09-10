@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 9 - ROBOCOPY Options 5</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>
+                    <a href="/Bank/KB-main.html">Knowledge Bank</a>
+                </li>
+                <li>Projects</li>
+                <li>
+                    <a href="/blog/blog-main.html">Blog</a>
+                </li>
+                <li>
+                    <a href="/About-Site/about-site.html">About Site</a>
+                </li>
+                <li>About Dr. Rob</li>
+                <li>
+                    <a href="WebDevSelectPage.html">Website Development</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>
+                Lesson 9 -
+                <code>ROBOCOPY</code> Options Part 5: Logging Options
+            </h2>
+            <section>
+                <p>
+                    This one is kinda my favourite set of options. We get to play around with what it tells us about the files it copies in the log section. We can even have it save the log section in a separate file to view later if we might need to do that.
+                </p>
+            </section>
+            <section>
+                <h3>Play with the First Set</h3>
+                <p>
+                    The image below shows the first set of options.
+                </p>
+                <img class="printout" src="images/Log-options1.png" />
+                <p>
+                    We can safely play around with combining these together or using them by themselves since they don't really affect anything. They just result in different stuff being reported in the log section. In order to see much effect with <code>/NP</code> and <code>/ETA</code> versus not having them, you will need to use files that have larger sizes than what we've been using so far. So put some copies of your actual stuff in the "original" folder and have at it!
+                </p>
+                <p>
+                    To name just a few of the options, we have already seen that the <code>/L</code> option merely lists what it would do if it actually copied. Like a practice run.
+                </p>
+                <p>
+                    <code>/V</code> will make it call out files in the log as having been skipped, instead of just skipping them.
+                </p>
+                <p>
+                    You can use <code>/NS</code>, <code>/NC</code>, <code>/NFL</code>, and <code>/NDL</code> to make the log section not report certain things, as described in the help information.
+                </p>
+                <p>
+                    Files with a non-zero size will have a percentage transferred shown. You can prevent that from showing up using the <code>/NP</code> options. Or you can have it be estimated time using the <code>/ETA</code> option. Keep in mind that if you are saving a log file, these options will make it longer since each file gets multiple lines - for some reason.
+                </p>
+            </section>
+            <section>
+                <h3>Saving the Log: <code>/LOG</code>, <code>/LOG+</code>, and <code>/TEE</code></h3>
+                <p>
+                    Maybe you want to be able to look back at the files and folders that were copied, skipped, extras, or whatever else after the program has finished and you close the window. Or maybe you just want a log that is more easily searchable than having to manually search the log by eye in the command prompt. In that case, you want to save the log in a log file.
+                </p>
+                <p>
+                    To save a log, decide on a file name for it, and a location. Let's say we are going to save it on the desktop and we want it to be called, "BackupLog.txt". Its a good idea to have it be a ".txt" file since that is the simplest type of file windows has and command prompt can easily output data to it. So run you <code>ROBOCOPY</code> command and include <kbd>/LOG:path/BackupLog.txt</kbd>. So for example, my command looks like
+                </p>
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /LOG:"C:\Users\Rob\Desktop\BackupLog.txt"</kbd>
+                <p>
+                    Like always, use quotes to enclose the path and file name so that if you have spaces, it doesn't fail on you.
+                </p>
+                <p>
+                    When you run this, it prints only a message telling you where to find the log file. Open that file up to view the same thing that otherwise would have been printed to the command prompt. Pretty neat!
+                </p>
+                <p>
+                    Now, check the "started" time near the top of that log. Write it down somewhere so you remember it cause we are going to change it. Run the exact same command again and compare the new start time with the previous start time.
+                </p>
+                <p>
+                    You should see that it has now changed. That means that every time the back up runs, the log file contains the information about the most recent run. If we wanted to save the previous runs' logs and also make a new log for a new run, then we can use the <code>/LOG+</code> option instead. Replace your <kbd>/LOG</kbd> with <kbd>/LOG+</kbd> and see what happens.
+                </p>
+                <p>
+                    The new log gets added to the end of the previous log. Now be careful running this many times since the file will just get bigger and bigger.
+                    </p>
+                <p>
+                    To reduce the size of the file, we can keep only one log in there. To do so, we just have to type in a different file name each time we run the command. If we want to save it automatically as a different file name without manually entering one, then we'll have to keep following the lessons, we'll get to it.
+                </p>
+                <p>
+                    So maybe we want to print the log stuff to the command prompt <em>and</em> have it in the log file. Then use <code>/TEE</code> in addition to the the log option of your choice.
+                </p>
+            </section>
+            <section>
+                <h3>Suggested Logging Options</h3>
+                <p>
+                    My suggestions highly depend on what you want from your program. When we begin developing the actual program, we will be using the <code>/LOG+</code>, <code>/TEE</code>, <code>/NP</code>, and <code>/X</code> options. We will also be using the <code>/L</code> option in a separate functionality of the program.
+                </p>
+                <p>
+                    I encourage you keep following along with the lessons to develop the program and build it out but keep playing around with the logging options to see what you prefer for your needs and your vision.
+                </p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 4 - ROBOCOPY</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+
+        <section>
+            <h2>Lesson 4 - The <code>ROBOCOPY</code> Command</h2>
+            <p>
+                It's finally here, the moment we've all been waiting for. Those who didn't know they were waiting for it will soon find what has been missing in their lives. Yes, that's correct, it is now time to learn about the <code>ROBOCOPY</code> command.
+            </p>
+            <p>
+                <code>ROBOCOPY</code>stands for ROBust file COPY. I assume the middle O is because it made it sound cool. It is a much better and more versatile command than <code>XCOPY</code> and it has a ton of options. The vast majority of which we will not be needing. One huge benefit it has over <code>XCOPY</code> is that it produces a log of what happened and can mark files as being extras, old, new, and other stuff.
+            </p>
+        </section>
+
+        <section>
+            <h3>ROBOCOPY first try</h3>
+            <p>
+                To get started, we will do what we did for the previous two commands. We will just try it out with the <code>source</code> and <code>destination</code> and see what happens. Open the command prompt and type in the following command:
+            </p>
+            <kbd>
+                ROBOCOPY "C:\Users\Rob\Desktop\original" "C:\Users\Rob\Desktop\backup"
+            </kbd>
+            <p>
+                Remember that you need to change the two paths to whatever yours are. But sure you get the order correct. It's original first and backup second.
+            </p>
+            <p>
+                The result we get is that only two files have been copied. This is just like when we first tried out <code>XCOPY</code>. The two files in the original folder but nothing else has been copied. Still, the printout is quite a bit different so let's look at what the command prompt window is showing us now.
+            </p>
+
+            <p>
+                Here is the resulting print out I got when I did this:
+            </p>
+            <img class="printout" src="images/ROBOCOPY1.png" />
+            <p>
+                First, notice there are three distinct sections. There's the inputs, the log, and the summary. We are going to hit these three in order.
+            </p>
+        </section>
+        <section>
+            <h3>Inputs Section</h3>
+            <p>
+                This section shows you the inputs you gave <code>ROBOCOPY</code>. This is really useful, epspecially as while developing our program, because it shows us how <code>ROBOCOPY</code> interpretted what we gave it. It's always possible that we are not going to be on the same page as <code>ROBOCOPY</code> and it's going to interpret our parameters differently then we expected. So be sure to check this section out if things are going the way you thought they should.
+            </p>
+            <p>
+                The first line just tells us the time and date that the command was run. This isn't generally going to be useful for our purposes but <code>ROBOCOPY</code> is used for more intensive application in large data systems where this could be useful to know. In any case, we have it if we need it.
+            </p>
+            <p>
+                The next two lines show us how our <code>source</code> and <code>destination</code> paths were interpretted. As long we keep using quotes, this should work out for us.
+            </p>
+            <p>
+                The <samp>Files :</samp> line is if we gave a file as some input to the command. We haven't done that here so there is nothing listed. If we wanted to supply a file with information about what to exclude, like we do with <code>XCOPY</code>, then it would show up here as an input. Though keep in mind there are other options for exclusion with <code>ROBOCOPY</code> to try before going that route.
+            </p>
+            <p>
+                The last line is the <samp>Options :</samp> line, and we see that although we didn't supply any options, there are several listed here anyway. We will go indepth about these options in future lessons but for now, here is what each one is doing:
+            </p>
+            <ul>
+                <li><samp>/DCOPY:DA</samp> copy the Data and the Attributes for folders</li>
+                <li><samp>/COPY:DAT</samp> copy the Data, Attributes, and Timestamps of files</li>
+                <li><samp>/R:1000000</samp> retry a maximum of 1 million times if copying a file doesn't work</li>
+                <li><samp>/W:30</samp> wait 30 seconds between each rety if copying doesn't work</li>
+            </ul>
+
+        </section>
+        <section>
+            <h3>Log Section</h3>
+            <p>
+                This section shows us the files that have been copied and their paths. It also gives us other good information.
+            </p>
+            <ul>
+                <li>The <samp>2</samp> to the left of the path indicates there are 2 files in that folder.</li>
+                <li>The next two lines are the names of the files in the folder named on the first line.</li>
+                <li>We are told these two files are new files from the well named <samp>New File</samp> marker.</li>
+                <li>The <samp>0</samp> and <samp>1</samp> are the respective file sizes in bytes of the file on that line. So the <samp>New Text Document.txt</samp> is <samp>1</samp> byte and the <samp>New Bitmap Image.bmp</samp> is <samp>0</samp> bytes. It's zero just because there is no actual picture there. The text file is 1 byte because I have a single letter typed into it.</li>
+                <li>The <samp>100%</samp> is the completion percentage of copying that file. There isn't one on the previous line, because that file has a size of 0 bytes and therefore doesn't have any actual data to transfer.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Summary Section</h3>
+            <p>
+                This section presents a summary of what <code>ROBOCOPY</code> did. It consists of a table and three rows of information below the table. If your files are all 0 bytes, you may not have the speed information shown in my screen shot.
+            </p>
+            <p>
+                As for the table, we have the following columns
+            </p>
+            <ul>
+                <li><samp>Total</samp> total number of things</li>
+                <li><samp>Copied</samp> how many were copied</li>
+                <li><samp>Skipped</samp> how many were skipped</li>
+                <li><samp>Mismatch</samp>how many are mismatched. Mismatch means there is item is a file in source but a folder in destination.</li>
+                <li><samp>FAILED</samp> how many were supposed to be copied but couldn't for some reason.</li>
+                <li><samp>Extras</samp> how many are extras. Extras are things that are present in the destination but not in the source.</li>
+            </ul>
+
+            <p>
+                The rows are for
+            </p>
+            <ul>
+                <li><samp>Dirs</samp> directories, which is just the fancy word for folder as far as we care.</li>
+                <li><samp>Files</samp> just files</li>
+                <li><samp>Bytes</samp> size in bytes</li>
+                <li><samp>Times</samp> how long it took</li>
+            </ul>
+
+            <p>
+                From the print out I got, we see that <code>ROBOCOPY</code> encountered a total of 1 folder (directory) and 2 files. It didn't copy the folder it found so it either failed or skipped and we see that it got skipped. The two files found were successfully copied. The total size of everything was 1 byte and all of that single byte was copied.
+            </p>
+            <p>
+                So the table is pretty nice to have. Not super helpful for such a simple first run but things get more complex, it's certainly nice to have it.
+            </p>
+            <p>
+                Below the table, we see the speed given in bytes per second and in megabytes per minute. We aren't going to care too much about the speed things transfer at since we are after a backup program that will be run often and will therefore not have to copy a ton of data on a regular basis.
+            </p>
+            <p>
+                The last line is just the date and time it ended. We see that it ended at the same time it began, but probably just took less than a second. This makes sense since we only copied 1 byte of data.
+            </p>
+        </section>
+
+        <section>
+            <h3>Copying Folders</h3>
+            <p>
+                It turns out that, just like with <code>XCOPY</code>, we can use <code>/S</code> to copy folders and <code>/E</code> to copy empter folders too. The fact these are the same is a specific choice on the part of the people behind the command but don't get used to the idea that options with the same letter do the same things as we move forward.
+            </p>
+            <p>
+                Leave the two files we have already copied in the backup folder and copy over everything using the <code>/E</code> option. This is the print out I got when I ran it:
+            </p>
+            <img class="printout" src="images/ROBOCOPY2.png" />
+            <p>
+                The options line in the inputs section now includes the <code>/S</code> and <code>/E</code> options. Even though we only included the <code>/E</code> option, <code>ROBOCOPY</code> automatically includes the <code>/S</code> option with it.
+            </p>
+            <p>
+                This is the same behavior that <code>XCOPY</code> had, we just couldn't tell because we didn't have a list of the options it actually applied. The reason it includes <code>/S</code> is because of the wording in the help for the <code>/E</code> option. Recall from the
+                <a href="DIY-Backup-L2-COPY-XCOPY.html">Backup Commands</a>
+                lesson that the wording on <code>/E</code> for <code>XCOPY</code> is that it <samp>Copies directories and subdirectories, including empty ones.</samp> This is the same wording as for <code>ROBOCOPY</code>. So what happens is that when a folder is encountered, <code>/S</code> is the option that says to copy it, and <code>/E</code> is the option to copy if it is empty. So you get <code>/S</code> for free though you could specify it to have the same effect if you wanted to.
+            </p>
+            <p>
+                Our log section is longer this time. Notice we still have the "original" folder at the top which is the folder we are copying from. There are 2 files found in that folders. Since they were already in the backup, they didn't need to be copied, so they aren't included in the log.
+            </p>
+            <p>
+                The next line is the first folder, "empty" which contains no files, hence <samp>0</samp>. Notice that it recognizes the folder as being new to the destination with the <samp>New Dir</samp> marker.
+            </p>
+            <p>
+                It then goes on to the next folder, "f1" which contains <samp>2</samp> files. We indent for the files and copy them one-at-a-time. In this case, the two documents have non-zero size.
+            </p>
+            <p>
+                The next thing is any folders within "f1" which means we do the "f1-empty" folder which has no files.
+            </p>
+            <p>
+                Having no new content in "f1" it goes back and starts in "f2" where it continues the process.
+            </p>
+            <p>
+                It starts at the initial location, "original" in our case, then systematically goes through each folder looking for new content. When it reaches the end of a branch, it goes up a level until a new branch is encountered.
+            </p>
+            <p>
+                You might think it should indent the folders as it goes and while this could be visually helpful, it would quickly lead to visual issues after even a few nested folders. The indentation would eventually run into the right side of the window and wrap around to the left side, making it extremely difficult to read the printout at all. Since it proceeds so systematically and predictably, we can usually find a particular folder or file in the log without much trouble if we would need to do that.
+            </p>
+            <p>
+                The summary section shows that a total of 6 folders, 6 files, and 21.1 kilobytes were found. It copied 5 folders, skipping 1 of them. It copied 4 files, skipping two of them. It skipped 1 byte of data.
+            </p>
+            <p>
+                The two files skipped were the two files copied from the previous run, one of which had size of 1 byte so that's were the byte is coming from. What about the directory, err... folder?
+            </p>
+        </section>
+        <section class="sideExplain">
+            <h4>Why skip main folder?</h4>
+            <p>
+                It seems odd at first, but <code>ROBOCOPY</code> will report the main folder as skipped. So it will always say that the folder "original" has been skipped. This actually is sensible in that we aren't actually copying a folder named "original." What I mean is we aren't expecting there to be an "original" folder present in the backup folder once everything is copied. We <em>are</em> copying the <em>contents</em> of the "original" folder, but not the actual folder itself. Therefore it skips it. Why then should it be reported as having been found in the "Total" column? If we look at the log section, we see that it starts with the "original" folder. So since it has to look in that folder for content, it must detect that folder, hence it gets added in as a folder in the "total" column, but isn't actually being copied, so get's "skipped."
+            </p>
+        </section>
+        <section>
+            <p>
+                We will cover options in the next few lessons. To round out this lesson, run the <code>ROBOCOPY</code> command again without removing anything from the backup. we get something like that shown in the following screenshot.
+            </p>
+            <img class="printout" src="images/ROBOCOPY3.png" />
+            <p>
+                In the print out, we see that the log shows no new files or folders, but still dutifully looked through every folder and counted the files for us.
+            </p>
+            <p>
+                The summary section has the same total information, but this time skipped everything since it was already in the backup folder.
+            </p>
+            <p>
+                Now open one of the documents in the original folder and change some minor thing, for example add a letter to a text document or a box to an image file. Then save the file and run the command again.
+            </p>
+            <p>
+                You will see that the printout tells us that <code>ROBOCOPY</code> detected a new file and it was copied to the backup.
+            </p>
+            <p>
+                In this way, <code>ROBOCOPY</code> can be used to copy only those files which have changed since the last time the backup was made.
+            </p>
+        </section>
+
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 3 - Command Options</title>
+
+</head>
+<body>
+
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Lesson 3 - Command Options</h2>
+        <section>
+            <p>
+                This lesson introduces additional ways to customize the outcome or behavior of the commands by using commands options, or parameters, if you prefer that name.
+            </p>
+            <h3><code>/L</code> - List</h3>
+            <p>
+                First, clear out your Backup folder and run <code>XCOPY</code> with the <code>/E</code> option so we get the resulting print out visible. Once you've done that, reset the Backup folder again and repeat the command, but this time add a second option, <code>/L</code>, which the help tells us will show the files that would be copied but will not actually copy anything. When you use multiple options, just use them one after the other separated by a space. So the new command looks like
+            </p>
+            <kbd>
+                XCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /L
+            </kbd>
+            <p>
+                and the print out is again the same as the previous one but this time nothing actually happened. This is the power of the List option. It may seem useless, but we will be using it at times during our future testing. I also recommend using it before actual implementation of the program on your computer, just to make sure you aren't going to accidentally delete something. It just gives an opportunity to see the effects of the commands without actually doing them.
+            </p>
+        </section>
+
+        <section>
+            <h3><code>/D:</code> Timestamp Changes</h3>
+            <p>
+                Let's say we have our stuff all backed up. Then we edit some files on our computer and want to run our program again to make sure the backup is up to date. So we run it again. We would like to reduce the amount of time this takes to complete by only copying the files that have actually changed rather than all of the files.
+            </p>
+            <p>
+                Let's simulate this situation now. With your Backup folder full of the data, that is, all up-to-date, open one of the files in the Original folder and change it. For example, just add a single letter to a text document. Save, then close that document. Notice how the "Date Modified" has changed in the file explorer for that file.
+            </p>
+            <p>
+                Now run the <code>XCOPY</code> command to backup the data again. It asks us whether or not we want to overwrite each and every file. We could enter <kbd>Y</kbd> for yes or <kbd>N</kbd> for no for every file. Alternatively, we can enter <kbd>A</kbd> to say yes to all files.
+            </p>
+            <p>
+                This is not what we want for our program. We want it to only copy <em>changed</em> files.
+            </p>
+            <p>
+                We can accomplish this with the <code>/D</code> option. The <code>/D</code> option allows us to specify a date. Any file changed after that date will be copied. If we do not specify a date, then only files with a date more recent than on the backup will be copied.
+            </p>
+            <p>
+                Let's look at an example. Take a look at that file you changed earlier. Make a note of it's date and the date of the other files. It has a more recent date since it was just changed. Change the content of a different file in the Original folder to update the date and run the command
+            </p>
+            <kbd>XCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Original" /E /D</kbd>
+            <p>
+                We still get prompted to confirm the overwrite but it is only copying that single files because it is comparing the dates between the Original and the Backup folders for each file.
+            </p>
+            <p>
+                We can also specify a date. Any files with a date after it will be copied. The syntax for that is
+            </p>
+            <kbd>
+                /D:m-d-y
+            </kbd>
+            <p>
+                or to be more clear, <kbd>/D:month-day-year</kbd>
+            </p>
+            <p>
+                Try it out for yourself. If the files in your test folder have dates that are all the same, you will need to come back another day to be able to get newer dates, but for example let's say we have a file with a date of August 10 2025 and all the other ones are older than that. We can type in
+            </p>
+            <kbd>
+                XCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Original" /E /D:8-10-2025
+            </kbd>
+            <p>
+                and only files updated on or after than date will be copied, though we are still prompted to approve the copy.
+            </p>
+            <p>
+                While specifying a date might seem cool, it doesn't really help long term since eventually most of our files in need of backing up will have been changed after whatever date we select. This would mean we would constantly need to either type in a new date or have the program determine a date. Perhaps by storing somewhere the date it last ran.
+            </p>
+            <p>
+                Just using <code>/D</code> by itself is far more useful for us.
+            </p>
+        </section>
+        <section>
+            <h3><code>/Y</code> - No Prompt to Confirm</h3>
+            <p>
+                In the previous option, we saw that we will get prompted to confirm overwriting files. We can use the <code>/Y</code> option to supress this prompt and respond with yes to any of those prompts.
+            </p>
+            <p>
+                Try it now by simply running the command twice. You will see you get prompted if you don't have <code>/Y</code> and you will not get prompted if you do have <code>/Y</code> in your options list.
+            </p>
+            <p>
+                Keep in mind that it will still copy all files unless you also use the <code>/D</code> option discussed above.
+            </p>
+        </section>
+        <section>
+            <h3><code>/EXCLUDE</code> - Exclude stuff</h3>
+            <p>
+                This option is used to exclude files and folders from being copied based on the name of the file or folder. We aren't going to discuss this option in this lesson. This section will be updated in the future to link to a separate lesson on using this option.
+            </p>
+            <p>
+                <code>ROBOCOPY</code> has a different, better, method of excluding files and folders and since we are building up to using <code>ROBOCOPY</code>, it isn't worth the time to get into how to use this option in <code>XCOPY</code>.
+            </p>
+        </section>
+
+
+
+
+
+        <section>
+            <h3><code>/J</code> - Use unbuffered I/O</h3>
+
+            <p>
+                The help information says that this option is recommended for copying large files. I recommend just using it anyway.
+            </p>
+            <p>
+                The idea is that unbuffered is your standard copying. The file data is copied from the original to the backup. Buffered puts it into or may attempt to find it in the computer's memory first and then copy it over. A file may be in the memory if it has been recently used so the idea is that if you are copying a file that was recently used, it should be faster if you use buffered.
+            </p>
+            <p>
+                There isn't any harm done either using this option. You could just test it out for a while with the option on then get rid of it to see if it copies faster.
+            </p>
+            <p>
+                For my system, after my initial backup, I don't have much that needs updating on a regular basis so I don't see much difference normally. The only times my backup takes long enough for it to matter is when I have a couple of new or changed very large files. Since you want to use <code>/J</code> for large files, I just use it all the time.
+            </p>
+
+        </section>
+        <section>
+            <h3>Conclusion</h3>
+            <p>
+                That ends our discussion of the options. We aren't going to talk about the other options since it is not likely you will be needing them for a personal computer.
+            </p>
+        </section>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

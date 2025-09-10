@@ -1,0 +1,68 @@
+html {
+    font-size: 30px;
+}
+
+kbd {
+    background-color: antiquewhite;
+    padding: 0px 5px 0px 5px;
+}
+
+samp {
+    background-color: black;
+    color: white;
+    padding: 0px 5px 0px 5px;
+}
+
+.bubbleExplainBox {
+    background-color: lightgreen;
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.bigText {
+    font-size: larger;
+}
+
+.sideExplain {
+    background-color: lightblue;
+}
+
+.printout {
+    width: calc(50%);
+}
+
+/*------Minimal Table Styling-----*/
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200,200,200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+td, th {
+    border: 1px solid rgb(190,190,190);
+    padding: 10px 20px;
+}
+
+th {
+    background-color: rgb(235,235,235);
+}
+
+td {
+    text-align: center;
+background-color: red;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+    background-color: rgb(235,235,235);
+}
+
+caption {
+    padding: 10px;
+}
+/*----End Minimal Table Stlying----*/
+

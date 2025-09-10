@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 10 - ROBOCOPY Options 6</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>
+                    <a href="/Bank/KB-main.html">Knowledge Bank</a>
+                </li>
+                <li>Projects</li>
+                <li>
+                    <a href="/blog/blog-main.html">Blog</a>
+                </li>
+                <li>
+                    <a href="/About-Site/about-site.html">About Site</a>
+                </li>
+                <li>About Dr. Rob</li>
+                <li>
+                    <a href="WebDevSelectPage.html">Website Development</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>
+                Lesson 10 -
+                <code>ROBOCOPY</code> Options Part 6: Job Options
+            </h2>
+            <img class="printout" src="images/Job-options.png" />
+
+            <p>
+                This set of options isn't strictly necessary for our back program goal, but it might prove useful for something you have in mind so we will show it off a bit. It also eases us in a little to working with files and not directly in the command prompt.
+            </p>
+            <section>
+                <h3>Use <code>/QUIT</code> to view the options</h3>
+                <p>
+                    We start with this one, not because of it's utility, but because it is easy. Run <code>ROBOCOPY</code> like you normally would, but use <code>/QUIT</code> in addition to whatever other options you like.
+                </p>
+                <p>
+                    The only thing that prints out is the input section. The idea here is you get a change to view the inputs as <code>ROBOCOPY</code> understands them to make sure they are what you are expecting them to be. Pretty straightforward.
+                </p>
+            </section>
+
+            <section>
+                <h3>Store Inputs in a file with <code>/SAVE</code> and <code>/JOB</code></h3>
+                <p>
+                    The other two options we are going to cover are the <code>/SAVE</code> and the <code>/JOB</code> options. These options allow you to save and make use of saved options and other inputs.
+                </p>
+                <p>
+                    Maybe you're tired of having to type all these options in all the time. Then save them! To see this in action, run an option filled command for <code>ROBOCOPY</code> like
+                </p>
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /J /R:5 /W:10 /TEE /LOG:"C:\Users\Rob\Desktop\BackupLog.txt" /SAVE:"C:\Users\Rob\Desktop\JobData.rcj"</kbd>
+                <p>
+                    In the above command, we have included the option to save the options to a file called "JobData.rcj" located on the desktop using the option
+                </p>
+                <kbd>/SAVE:"C:\Users\Rob\Desktop\JobData.rcj"</kbd>
+                <p>
+                    The ".rcj" extension probably stands for RoboCopy Job, but I don't want to look it up. It's a nice thought and I don't want it spoiled.
+                </p>
+                <p>
+                    Open the file and have a look inside. It quite a bit of interesting features going on. 
+                </p>
+
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

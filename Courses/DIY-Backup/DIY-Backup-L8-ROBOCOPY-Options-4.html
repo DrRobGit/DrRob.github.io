@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 8 - ROBOCOPY Options 4</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>
+                    <a href="/Bank/KB-main.html">Knowledge Bank</a>
+                </li>
+                <li>Projects</li>
+                <li>
+                    <a href="/blog/blog-main.html">Blog</a>
+                </li>
+                <li>
+                    <a href="/About-Site/about-site.html">About Site</a>
+                </li>
+                <li>About Dr. Rob</li>
+                <li>
+                    <a href="WebDevSelectPage.html">Website Development</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>
+                Lesson 8 -
+                <code>ROBOCOPY</code> Options Part 4: Retry Options
+            </h2>
+            <p>
+                There aren't very many retry options and as a result, there isn't much to this lesson. We will cover the retries, wait time, registry default, and low free space mode options. So basically we won't cover the sharenames to be defined option. Let's get started.
+            </p>
+            <section>
+                <h3>
+                    Retries and Wait Times: <code>/R</code>, <code>/W</code>, and <code>/REG</code>
+                </h3>
+                <p>
+                    It's possible that when you attempt to copy a file, the computer fails to actually copy it. If you've never encountered a random error on a computer I am shocked and confused, so this is hopefully a scenario you could imagine happening.
+                </p>
+                <p>
+                    I such an event, you may like it if the program automatically tried to copy the file again. In that case, you use the <code>/R</code> option to specify the number of times it will retry.
+                </p>
+                <p>
+                    There are a variety of reasons that files might not being copying over, from permissions issues, to maybe the computer is just too busy doing other stuff. So they gave us the option <code>/W</code> to specify the amount of time in seconds to wait between attempts.
+                </p>
+                <p>
+                    You probably noticed the inputs section already gave values for these two options. The default values are <code>/R:1000000</code> and <code>/W:30</code>. Your eyes do not deceive you, that is 1 million attempts and 30 seconds between each attempt. That's 30 million seconds, or 8,333 hours, or 347 days. Just to to copy a single file.
+                </p>
+                <p>
+                    For our personal back up project, we definitely don't need that. So why not lower them? I suggest retrying 5 times with <code>/R:5</code> spaced 10 seconds apart with <code>/W:10</code>. That will give us a perfectly good amount of time to fix the problem if we notice it and can fix it. Otherwise, it moves on after about a minute instead of 347 days.
+                </p>
+                <p>
+                    The <code>/REG</code> option can be used to save whatever values you use for the <code>/R</code> and <code>/W</code> options as default values. This means you wouldn't have to specify them again if typing them in bothers you. To use it, just include it in the list of options along with either or both of the other two:
+                </p>
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /R:5 /W:10 /REG</kbd>
+                <p>
+                    will save the retries to 5 and wait time to 10 seconds as defaults. Next time you run <code>ROBOCOPY</code>, if you don't include the <code>/R</code> or <code>/W</code> options, you will see your new defaults in the inputs section.
+                </p>
+            </section>
+
+            <section>
+                <h3>Low Free Space Mode: <code>/LFSM</code></h3>
+                <p>
+                    This option can be used if you have concerns about filling up your back up location with too much backed up data. For example, say you have a 1 TB drive you are using as your backup, but you only want to keep 300 GB of free space on that drive. You can use <kbd>/LFSM:300G</kbd> to prevent the free space from going below 300 GB.
+                </p>
+                <p>
+                    For the data units, K=kilo, M=mega, and G=giga
+                </p>
+                <p>
+                    If you just use <kbd>/LFSM</kbd> without a number, the default is to keep the free space at 10% of the total size.
+                </p>
+            </section>
+            <section>
+                <h3>Suggested Options</h3>
+                <p>
+                    I'm going to suggest we cut down on the number of retries and wait times.
+                </p>
+                <kbd>/R:5 /W:10</kbd>
+                <p>
+                    Use <code>/LFSM</code> with number specified or not if you have concerns about free space of your backup location
+                </p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>

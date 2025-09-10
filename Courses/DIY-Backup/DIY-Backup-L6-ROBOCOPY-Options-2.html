@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Dr. Rob" />
+    <meta name="description" content="A place for learning." />
+
+    <link rel="icon" href="/images/favicon32.png" type="image/png" />
+    <link rel="stylesheet" href="DIY-Backup-style.css" />
+
+    <title>Lesson 6 - ROBOCOPY Options 2</title>
+
+</head>
+<body>
+    <header>
+        <h1>Making a DIY Command Prompt Back up Program</h1>
+        <img src="/images/sheep-60.png" alt="a small sheep logo" />
+
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li><a href="/Bank/KB-main.html">Knowledge Bank</a></li>
+                <li>Projects</li>
+                <li><a href="/blog/blog-main.html">Blog</a></li>
+                <li><a href="/About-Site/about-site.html">About Site</a></li>
+                <li>About Dr. Rob</li>
+                <li><a href="WebDevSelectPage.html">Website Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Lesson 6 - <code>ROBOCOPY</code> Options Part 2: Copy Options</h2>
+
+            <p>
+                We've already know we want to use either <code>/S</code> or <code>/E</code> so we can get our folders copied. Let's look at some of the other copy options available. Unless stated otherwise, assume that all
+                <code>ROBOCOPY</code> runs in this lesson include the <code>/E</code> option.
+            </p>
+
+            <section>
+                <h3><code>/LEV:n</code></h3>
+                <p>
+                    This is the help entry for this option:
+                </p>
+                <samp>only copy the top m LEVels of the source directory tree.</samp>
+                <p>
+                    See how they have capitalized the word "levels" like that? This is the development team's attempt to help you remember the code for some of the options. So we see that "LEV" comes from the word "level" and can more easily remember it that way.
+                </p>
+                <p>
+                    I don't think a typical person would use this option in their backup program but I wanted to cover it to get us more comfortable with experimenting with the options.
+                </p>
+                <p>
+                    That being said, this option will enable us to specify a certain "depth" in our folders we wish to go. Ours isn't especially deep right now so we will have to keep it shallow, but you could add additional folders to increase the depth. Let's see what this does.
+                </p>
+                <p>
+                    Recall that using the <code>/E</code> options gave us the fully backed up version like we wanted. Now let's try adding in <code>/LEV:3</code> to see what that does. Based on the help, we expect it will copy the first 3 folders deep in our original folder, which should include everything.
+                </p>
+                <p>
+                    Now try with <code>/LEV:2</code> instead. We find that now we only have the files in folders f1 and f2, not the folders inside them. If we change it to <code>/LEV:1</code>, we only get the two files in the original folder and no subsequent folders at all.
+                </p>
+                <p>
+                    This is a useful exercise because it helps us understand an important piece of information: The original folder itself is level 1 in the "tree" of folders being looked at. Some might expect it to be level zero, and then f1 or f2 should be level 1, but in fact <strong>the actual folder we name as our source is level 1.</strong>
+                </p>
+            </section>
+
+            <section>
+                <h3><code>/B</code></h3>
+                <p>
+                    Many people use <code>/B</code> for making backups. In fact, the help even seems to suggest this in its description:
+                </p>
+                <samp>copy files in Backup mode</samp>
+                <p>
+                    However, backup mode is different than you might expect. The purpose of backup mode is to overide permissions that might block access to copying stuff. Since we are backing up our own stuff that we have full permissions to, we do not need this option.
+                </p>
+            </section>
+            <section>
+                <h3><code>/PURGE</code></h3>
+                <p>
+                    Skip down a bit and look at the <code>/PURGE</code> option. The description says:
+                </p>
+                <samp>delete dest files/dirs that no longer exist in source.</samp>
+                <p>
+                    First off, "dest" is short for "destination" which is our back up folder. There is some inconsistency with abbreviating this word.
+                </p>
+                <p>
+                    This description is talking about a scenario in which the backup folder ("dest" is short for destination which is our backup folder) has contents that are not present in the original (the "source"). So let's make create that situation to see what happens.
+                </p>
+                <p>
+                    First, run the command using only the <code>/E</code> option to get the back up made. Then delete the lone file in the f2 folder so that f2 contains only the "f2 space folder". Run the exact same command again. The deleted file is found in the destination but not the source so it is listed in the log section as "Extra" as shown in the image below.
+                </p>
+                <img class="printout" src="images/ROBOCOPY-ExtraFile.png" />
+                <p>
+                    If we compare the values in the summary section, we see that only 5 files were detected, instead of 6 in the previous run. This matches with the fact that we have an extra file in the destination right now. It even has a <samp>1</samp> in the <samp>Extras</samp> column of the summary table. How nice!
+                </p>
+                <p>
+                    Okay, so now run it again but add in the <code>/PURGE</code> option. The command should look something like
+                </p>
+                <kbd>C:\Users\Rob>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /PURGE</kbd>
+                <p>
+                    The log and summary sections are the same as they were previously but the file has now been deleted from the backup folder. In this way, the <code>/PURGE</code> option can be used to make sure that the back up folder is the same as the original folder.
+                </p>
+                <p>
+                    Be very careful whether or not you want to use this option. It can be helpful but it can also be potentially tragic. For example, if you have gone through your computer and deleted a bunch of stuff you no longer need, you will have a bunch of "EXTRA" files on the backup that you will need to remove - if you want. The <code>/PURGE</code> option takes care of this by deleting all those extra files for us.
+                </p>
+                <p>
+                    However, imagine you just accidentally deleted something and didn't realize you did. You run your backup and it gets removed from there too because <code>/PURGE</code> was used. Later on, you go looking for that file, realize it isn't on your computer so check you backup only to find it has been deleted from there too. In this way, <code>/PURGE</code> can delete stuff you actually need.
+                </p>
+                <p>
+                    Because <code>/PURGE</code> could potentially lead to complete loss of an important file, or at the very least make it much more difficult to find it, I wouldn't recommend it until you get used to the back up system you have.
+                </p>
+            </section>
+            <section>
+                <h3><code>/MIR</code></h3>
+                <p>
+                    This option stands for the word "mirror" and is intended to make the destination an exact copy of the files and folders found in the source. This includes deleting any extra files found in the destination. As such, it is a combination of <code>/E</code> and <code>/PURGE</code>, which we just tested out above. I suggest holding off on using <code>/MIR</code> for the same reasons given for <code>/PURGE</code>
+                </p>
+            </section>
+
+            <section>
+                <h3><code>/COPY:</code></h3>
+                <p>
+                    We very briefly introduced this option in lesson 4 when we first looked at the input section. It is included among the default options.
+                </p>
+                <p>
+                    Found near the top, the help gives the following information on the <code>/COPY</code> option:
+                </p>
+                <img class="printout" src="images/ROBOCOPY-copyOPT.png" />
+                <p>
+                    It says this option tells ROBOCOPY what to copy <em>for files</em>. By default, the option is <samp>/COPY:DAT</samp>, as confirmed when running the commands we have been doing, or looking at the help description.
+                </p>
+                <p>
+                    We are told what each individual letter means. We see that <code>DAT</code> is the data, attributes, and timestamps. The other four letters, <code>XSOU</code> are not going to be relevent for a typical home user so we won't go into detail on them here.
+                </p>
+                <p>
+                    By including the <code>D</code>, we ensure that data for the file is copied. If we don't use <code>D</code> then the data isn't copied and the file won't be copied at all even if it doesn't exist in the backup, regardless of what else we choose. So always include <code>D</code>.
+                </p>
+                <p>
+                    The attributes, <code>A</code>, are things like whether the file is hidden, a temporary file, a system file, and other such things. Not necessarily required for home use, but doesn't hurt anything either.
+                </p>
+                <p>
+                    Copying the timestamps with <code>T</code> makes sense if you want to have the file say the correct time and date at which it was created and modified. If you don't want it to retain that information then by all means don't include it in the option.
+                </p>
+                <p>
+                    My recommendation is to use <kbd>/COPY:DAT</kbd> which is the default anyway, though including it explicitly can help us be sure at a glance that we have set what we want. Be sure that when you use the option, you do not include a space after the colon. Remember that spaces is how command prompt separates things. A space here would be used to separate the options, but this is all one big option.
+                </p>
+
+            </section>
+            <section>
+                <h3><code>/DCOPY</code></h3>
+                <p>
+                    This option is the same as <code>/COPY</code> but for folders (or directories, hence the <code>D</code>). It has the default values of <code>DA</code> which notably does not include <code>T</code> for timestamps.
+                </p>
+                <p>
+                    I recommend specifying <kbd>/DCOPY:DAT</kbd>. The following exercise demonstrates why.
+                </p>
+                <p>
+                    Go to your original folder and change the view to "Details" so you get a column named "Date Modified" for your files and folders. Leave that window open and open a new window to view your backup, use the same view to see the "Date Modified" of the same folder. For example, my f2 space folder has a modified date of August 9 in both locations. 
+                </p>
+                <p>
+                    Now right click and select properties for both folders to view the "Date Created." (For some reason, the properties window does not display the date modified for folders.) You should see that the "Date Created" is different between the two folders. This is because the timestamps were not copied over. The modified date timestamp is copied, but not the created date timestamp.
+                </p>
+                <p>
+                    We want to copy the created date too, so run <code>ROBOCOPY</code> again but include the timestamps for folders using
+                </p>
+                <kbd>ROBOCOPY "C:\Users\Rob\Desktop\Original" "C:\Users\Rob\Desktop\Backup" /E /DCOPY:DAT</kbd>
+                <p>
+                    It's possible that when you do this, the column names change around in the backup folder. You can fix this by right clicking on them to select which columns you want. More importantly, we now see in the properties window that the dates match!
+                </p>
+            </section>
+            <section>
+                <h3>Suggested Copy Options</h3>
+                <p>
+                    We finish this lesson with the copy options I suggest you start out with:
+                </p>
+                <kbd>/E /J /COPY:DAT /DCOPY:DAT</kbd>
+                <p>
+                    Experiment for yourself with some of the other copy options to see what you like and what you don't like.
+                </p>
+
+            </section>
+        </article>
+    </main>
+    <footer>
+        <img src="/images/sheep-60.png" />
+    </footer>
+</body>
+</html>
